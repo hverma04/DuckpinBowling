@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No. Chelmsford Lanes | Classic Duckpin Bowling</title>
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --primary-blue: #1A365D;
+            --vintage-red: #C53030;
+            --cream: #F7FAFC;
+            --text-dark: #2D3748;
+            --text-light: #718096;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--cream);
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.434);
+        }
+
+        .logo { font-size: 1.5rem;
+                font-weight: bold;
+                letter-spacing: 1px;
+                display: flex;
+                align-items: center;
+                margin-left: -40px;}
+
+        .logo-img {
+            height: 40px; 
+            width: auto;
+            margin-right: 15px;
+            border-radius: 10px;  
+        }
+        
+        nav ul { list-style: none; display: flex; gap: 2rem; }
+        nav a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: #E2E8F0; }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(26, 54, 93, 0.7), rgba(26, 54, 93, 0.7)), url('hero-lanes.png') no-repeat center center/cover;
+        }
+        
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.25rem; max-width: 600px; margin: 0 auto 2rem; }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--vintage-red);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover { background-color: #9B2C2C; }
+
+        /* Container for content sections */
+        .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
+        
+        h2 { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 1.5rem; text-align: center; }
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--vintage-red);
+        }
+
+        /* Carousel Section */
+        .carousel-container {
+            width: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .carousel {
+            display: flex;
+            gap: 1.5rem;
+            scroll-snap-type: x mandatory;
+        }
+
+        .carousel img {
+            scroll-snap-align: center;
+            width: 85vw;
+            max-width: 600px;
+            aspect-ratio: 3/2;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        /* Custom Scrollbar for Carousel */
+        .carousel-container::-webkit-scrollbar {
+            height: 10px;
+        }
+        .carousel-container::-webkit-scrollbar-track {
+            background: #E2E8F0; 
+            border-radius: 5px;
+        }
+        .carousel-container::-webkit-scrollbar-thumb {
+            background: var(--primary-blue); 
+            border-radius: 5px;
+        }
+
+        /* Payment Section */
+        .payment-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap; /* Ensures it stacks nicely on mobile phones */
+            margin-top: 2rem;
+        }
+
+        .payment-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-blue);
+            width: 220px;
+        }
+
+        .payment-card h3 {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .qr-code {
+            width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 4px;
+            border: 1px solid #E2E8F0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            nav ul { display: none; /* In a full build, add a hamburger menu here */ }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+   <header>
+        <div class="logo">
+            <img src="logo.png" alt="Lanes Logo" class="logo-img">
+            <span>No. Chelmsford Lanes</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">The Game</a></li>
+                <li><a href="#history">Our Story</a></li>
+                <li><a href="#visit">Visit Us</a></li>
+                <li><a href="#pay">Quick Pay</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Real Bowling. Real History.</h1>
+        <p>Step back in time at No. Chelmsford Lanes, a classic neighborhood duckpin bowling alley.</p>
+        <a href="#visit" class="btn">Plan Your Visit</a>
+    </section>
+
+    <section id="about" class="container">
+        <h2>What is Duckpin Bowling?</h2>
+        <div class="grid-2">
+            <div>
+                <h3 style="color: var(--text-dark); font-size: 1.5rem; margin-bottom: 0.5rem;">About Duckpin</h3>
+                <p>Duckpin bowling is a classic New England-based variant that uses smaller balls without finger holes and lighter, squatter pins. Because it's a bit tougher to get a strike, bowlers get three rolls per frame instead of two. It's a fun, challenging, and highly authentic traditional bowling experience where a perfect 300 game has never been officially rolled!</p>
+            </div>
+            <div class="feature-box">
+                <h3>Welcome to the Lanes</h3>
+                <p style="margin-top: 1rem;">Whether you are a dedicated league bowler, a local regular, or a family looking for an energetic experience, our lanes are ready for you.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="history" style="background-color: #E2E8F0;">
+        <div class="container">
+            <h2>Preserving a Local Legacy</h2>
+            <div class="grid-2">
+                <div class="feature-box" style="border-top-color: var(--primary-blue);">
+                    <p>Established as Charlie Dinnigan Lanes around 1943, our building has been a neighborhood staple for decades. We are proud of our deep roots in the community.</p>
+                </div>
+                <div>
+                    <p>We operate using original, ~60-year-old mechanical pinsetters. These machines require deep mechanical knowledge and custom repairs to keep running. When you bowl here, you aren't just playing a game—you are keeping a piece of history alive.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="container" style="padding-top: 60px; padding-bottom: 20px;">
+        <h2>Views from the Lanes</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                <img src="lane_suit.png" alt="No. Chelmsford Lanes">
+                <img src="Pins.png" alt="Charlie Dinnigan Lanes 1943 Plaque">
+                <img src="balls.png" alt="Vintage Duckpin Pinsetters">
+                <img src="1943.png" alt="Classic 1991 Pepsi Pricing Board">
+                <img src="Mike_Tom.png" alt="Welcome to No. Chelmsford Lanes">
+            </div>
+        </div>
+    </section>
+
+    <section id="visit" class="container" style="padding-top: 40px;">
+        <h2>Let's Roll</h2>
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Ready to take on the challenge? Grab your friends and come roll a few frames with us.</p>
+            
+            <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: left;">
+                <p><strong>Location:</strong> 22 Vinal Square, North Chelmsford, MA</p>
+                <p style="margin-top: 1rem;"><strong>Hours:</strong><br>
+                Monday - Friday: Call for Availability<br>
+                Saturday - Sunday: 9:00 AM - 6:00 PM</p>
+                <p style="margin-top: 1rem;"><strong>Contact:</strong> 978-251-8108 </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pay" class="container" style="text-align: center; background-color: #E2E8F0; max-width: 100%;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h2>Quick Pay</h2>
+            <p style="font-size: 1.2rem;">Skip the line! Scan a code below to pay for your lane and shoe rentals directly.</p>
+
+            <div class="payment-grid">
+                <div class="payment-card">
+                    <h3>Venmo</h3>
+                    <img src="venmo-qr.png" alt="Venmo QR Code" class="qr-code">
+                    <p><strong>@NoChelmsfordLanes</strong></p>
+                </div>
+
+                <div class="payment-card">
+                    <h3>Cash App</h3>
+                    <img src="cashapp-qr.png" alt="Cash App QR Code" class="qr-code">
+                    <p><strong>@NoChelmsfordLanes</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 No. Chelmsford Lanes. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Calculate header height to offset the scroll so the header doesn't cover the title
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
+    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
