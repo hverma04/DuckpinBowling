@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="No. Chelmsford Lanes - A classic neighborhood duckpin bowling alley in MA.">
     <title>No. Chelmsford Lanes | Classic Duckpin Bowling</title>
     <style>
         /* CSS Reset & Variables */
@@ -16,11 +17,15 @@
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        /* Smooth scrolling natively where supported */
+        html { scroll-behavior: smooth; }
+        
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             background-color: var(--cream);
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Navigation */
@@ -37,12 +42,15 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.434);
         }
 
-        .logo { font-size: 1.5rem;
-                font-weight: bold;
-                letter-spacing: 1px;
-                display: flex;
-                align-items: center;
-                margin-left: -40px;}
+        .logo { 
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            /* Adjusted margin for better mobile centering */
+            margin-left: 0; 
+        }
 
         .logo-img {
             height: 40px; 
@@ -51,9 +59,31 @@
             border-radius: 10px;  
         }
         
-        nav ul { list-style: none; display: flex; gap: 2rem; }
-        nav a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        nav ul { 
+            list-style: none; 
+            display: flex; 
+            gap: 2rem; 
+        }
+        
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 500; 
+            transition: color 0.3s; 
+        }
+        
         nav a:hover { color: #E2E8F0; }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
 
         /* Hero Section */
         .hero {
@@ -64,7 +94,7 @@
             background: linear-gradient(rgba(26, 54, 93, 0.7), rgba(26, 54, 93, 0.7)), url('hero-lanes.png') no-repeat center center/cover;
         }
         
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; }
         .hero p { font-size: 1.25rem; max-width: 600px; margin: 0 auto 2rem; }
         
         .btn {
@@ -77,6 +107,9 @@
             font-size: 1.1rem;
             font-weight: bold;
             transition: background-color 0.3s;
+            /* Touch target optimization */
+            min-height: 44px;
+            min-width: 44px;
         }
         
         .btn:hover { background-color: #9B2C2C; }
@@ -84,7 +117,7 @@
         /* Container for content sections */
         .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
         
-        h2 { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 1.5rem; text-align: center; }
+        h2 { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 1.5rem; text-align: center; line-height: 1.2; }
         
         /* Grid Layouts */
         .grid-2 {
@@ -127,27 +160,21 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             flex-shrink: 0;
+            /* Prevents image drag ghosting on mobile */
+            -webkit-user-drag: none; 
         }
 
         /* Custom Scrollbar for Carousel */
-        .carousel-container::-webkit-scrollbar {
-            height: 10px;
-        }
-        .carousel-container::-webkit-scrollbar-track {
-            background: #E2E8F0; 
-            border-radius: 5px;
-        }
-        .carousel-container::-webkit-scrollbar-thumb {
-            background: var(--primary-blue); 
-            border-radius: 5px;
-        }
+        .carousel-container::-webkit-scrollbar { height: 10px; }
+        .carousel-container::-webkit-scrollbar-track { background: #E2E8F0; border-radius: 5px; }
+        .carousel-container::-webkit-scrollbar-thumb { background: var(--primary-blue); border-radius: 5px; }
 
         /* Payment Section */
         .payment-grid {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            flex-wrap: wrap; /* Ensures it stacks nicely on mobile phones */
+            flex-wrap: wrap; 
             margin-top: 2rem;
         }
 
@@ -158,6 +185,9 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border-top: 4px solid var(--primary-blue);
             width: 220px;
+            /* Flex grow on mobile */
+            flex: 1 1 220px; 
+            max-width: 300px;
         }
 
         .payment-card h3 {
@@ -182,21 +212,60 @@
             padding: 2rem 20px;
         }
 
-        /* Responsive */
+        /* Responsive Mobile Optimizations */
         @media (max-width: 768px) {
-            .grid-2 { grid-template-columns: 1fr; }
-            nav ul { display: none; /* In a full build, add a hamburger menu here */ }
-            .hero h1 { font-size: 2.5rem; }
+            /* Layout Adjustments */
+            .grid-2 { grid-template-columns: 1fr; gap: 1.5rem; }
+            .container { padding: 40px 20px; }
+            
+            /* Typography Adjustments */
+            h2 { font-size: 2rem; }
+            .hero { padding: 60px 15px; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            
+            /* Logo & Header Setup */
+            .logo { font-size: 1.2rem; }
+            .logo-img { height: 32px; margin-right: 10px; }
+            
+            /* Mobile Navigation Integration */
+            .mobile-menu-toggle { display: block; }
+            
+            nav ul { 
+                display: none; /* Hidden by default */
+                flex-direction: column; 
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-blue);
+                padding: 1rem 0;
+                text-align: center;
+                gap: 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            }
+            
+            /* Class toggled via JS */
+            nav ul.active { display: flex; }
+            
+            nav a { 
+                display: block; 
+                padding: 15px 20px; /* Enhanced touch target size */
+                font-size: 1.1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            nav a:last-child { border-bottom: none; }
         }
     </style>
 </head>
 <body>
 
-   <header>
+    <header>
         <div class="logo">
             <img src="logo.png" alt="Lanes Logo" class="logo-img">
             <span>No. Chelmsford Lanes</span>
         </div>
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">☰</button>
         <nav>
             <ul>
                 <li><a href="#about">The Game</a></li>
@@ -245,11 +314,11 @@
         <h2>Views from the Lanes</h2>
         <div class="carousel-container">
             <div class="carousel">
-                <img src="lane_suit.png" alt="No. Chelmsford Lanes">
-                <img src="Pins.png" alt="Charlie Dinnigan Lanes 1943 Plaque">
-                <img src="balls.png" alt="Vintage Duckpin Pinsetters">
-                <img src="1943.png" alt="Classic 1991 Pepsi Pricing Board">
-                <img src="Mike_Tom.png" alt="Welcome to No. Chelmsford Lanes">
+                <img src="lane_suit.png" alt="No. Chelmsford Lanes" loading="lazy">
+                <img src="Pins.png" alt="Charlie Dinnigan Lanes 1943 Plaque" loading="lazy">
+                <img src="balls.png" alt="Vintage Duckpin Pinsetters" loading="lazy">
+                <img src="1943.png" alt="Classic 1991 Pepsi Pricing Board" loading="lazy">
+                <img src="Mike_Tom.png" alt="Welcome to No. Chelmsford Lanes" loading="lazy">
             </div>
         </div>
     </section>
@@ -264,7 +333,7 @@
                 <p style="margin-top: 1rem;"><strong>Hours:</strong><br>
                 Monday - Friday: Call for Availability<br>
                 Saturday - Sunday: 9:00 AM - 6:00 PM</p>
-                <p style="margin-top: 1rem;"><strong>Contact:</strong> 978-251-8108 </p>
+                <p style="margin-top: 1rem;"><strong>Contact:</strong> <a href="tel:9782518108" style="color: var(--primary-blue); font-weight: bold; text-decoration: none;">978-251-8108</a></p>
             </div>
         </div>
     </section>
@@ -277,13 +346,13 @@
             <div class="payment-grid">
                 <div class="payment-card">
                     <h3>Venmo</h3>
-                    <img src="venmo-qr.png" alt="Venmo QR Code" class="qr-code">
+                    <img src="venmo-qr.png" alt="Venmo QR Code" class="qr-code" loading="lazy">
                     <p><strong>@NoChelmsfordLanes</strong></p>
                 </div>
 
                 <div class="payment-card">
                     <h3>Cash App</h3>
-                    <img src="cashapp-qr.png" alt="Cash App QR Code" class="qr-code">
+                    <img src="cashapp-qr.png" alt="Cash App QR Code" class="qr-code" loading="lazy">
                     <p><strong>@NoChelmsfordLanes</strong></p>
                 </div>
             </div>
@@ -295,15 +364,29 @@
     </footer>
 
     <script>
+        // Mobile Menu Logic
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth Scrolling & Close Menu Logic
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                
+                // Close mobile menu if open
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
                 
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {
-                    // Calculate header height to offset the scroll so the header doesn't cover the title
+                    // Calculate header height to offset the scroll
                     const headerHeight = document.querySelector('header').offsetHeight;
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
