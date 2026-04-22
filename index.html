@@ -5,33 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="No. Chelmsford Lanes - A classic neighborhood duckpin bowling alley in MA.">
     <title>No. Chelmsford Lanes | Classic Duckpin Bowling</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <style>
-        /* CSS Reset & Variables */
+        /* CSS Reset & Vintage Variables */
         :root {
-            --primary-blue: #1A365D;
-            --vintage-red: #C53030;
-            --cream: #F7FAFC;
-            --text-dark: #2D3748;
-            --text-light: #718096;
+            --primary-dark: #3E2723; /* Deep espresso wood brown */
+            --accent-red: #B73225; /* Classic bowling lane red */
+            --bg-cream: #F4EFE6; /* Warm aged paper/cream */
+            --section-bg: #E6DCC8; /* Vintage tan for contrasting sections */
+            --text-dark: #2C1E16; /* Warm dark brown-black for text */
+            --border-color: #D4C5B0;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* Smooth scrolling natively where supported */
         html { scroll-behavior: smooth; }
         
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Libre Baskerville', serif; 
             line-height: 1.6;
             color: var(--text-dark);
-            background-color: var(--cream);
+            background-color: var(--bg-cream);
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* Vintage Display Font for Headings */
+        h1, h2, h3, .logo span, .btn, nav a {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1.5px;
+            font-weight: normal;
         }
 
         /* Navigation */
         header {
-            background-color: var(--primary-blue);
-            color: white;
+            background-color: var(--primary-dark);
+            color: var(--bg-cream);
             padding: 1rem 5%;
             position: sticky;
             top: 0;
@@ -39,47 +50,30 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.434);
+            border-bottom: 3px solid var(--accent-red);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .logo { 
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 1px;
+            font-size: 2rem;
             display: flex;
             align-items: center;
-            /* Adjusted margin for better mobile centering */
-            margin-left: 0; 
-        }
-
-        .logo-img {
-            height: 40px; 
-            width: auto;
-            margin-right: 15px;
-            border-radius: 10px;  
         }
         
-        nav ul { 
-            list-style: none; 
-            display: flex; 
-            gap: 2rem; 
-        }
-        
+        nav ul { list-style: none; display: flex; gap: 2rem; }
         nav a { 
-            color: white; 
+            color: var(--bg-cream); 
             text-decoration: none; 
-            font-weight: 500; 
+            font-size: 1.3rem;
             transition: color 0.3s; 
         }
-        
-        nav a:hover { color: #E2E8F0; }
+        nav a:hover { color: #D4C5B0; }
 
-        /* Mobile Menu Toggle */
         .mobile-menu-toggle {
             display: none;
             background: transparent;
             border: none;
-            color: white;
+            color: var(--bg-cream);
             font-size: 2rem;
             cursor: pointer;
             padding: 0.25rem;
@@ -88,52 +82,60 @@
         /* Hero Section */
         .hero {
             background-color: var(--text-dark);
-            color: white;
+            color: var(--bg-cream);
             text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(rgba(26, 54, 93, 0.7), rgba(26, 54, 93, 0.7)), url('hero-lanes.png') no-repeat center center/cover;
+            padding: 80px 20px 100px; /* Slightly reduced top padding to accommodate logo */
+            background: linear-gradient(rgba(44, 30, 22, 0.8), rgba(44, 30, 22, 0.8)), url('hero-lanes.png') no-repeat center center/cover;
+            border-bottom: 4px solid var(--accent-red);
+        }
+
+        .hero-logo {
+            height: 190px; /* Enlarged for the center stage */
+            width: auto;
+            margin-bottom: 25px; /* Pushes the text down slightly */
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Makes the logo lift off the background */
         }
         
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; }
-        .hero p { font-size: 1.25rem; max-width: 600px; margin: 0 auto 2rem; }
+        .hero h1 { font-size: 4.5rem; margin-bottom: 1rem; line-height: 1.1; letter-spacing: 3px; }
+        .hero p { font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem; }
         
         .btn {
             display: inline-block;
-            background-color: var(--vintage-red);
+            background-color: var(--accent-red);
             color: white;
-            padding: 12px 30px;
+            padding: 12px 35px;
             text-decoration: none;
             border-radius: 4px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            /* Touch target optimization */
-            min-height: 44px;
-            min-width: 44px;
+            font-size: 1.4rem;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
         }
-        
-        .btn:hover { background-color: #9B2C2C; }
+        .btn:hover { background-color: #9A281E; transform: translateY(-2px); }
 
         /* Container for content sections */
-        .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
-        
-        h2 { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 1.5rem; text-align: center; line-height: 1.2; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 70px 20px; }
+        h2 { font-size: 3.2rem; color: var(--primary-dark); margin-bottom: 1.5rem; text-align: center; line-height: 1.1; }
         
         /* Grid Layouts */
-        .grid-2 {
+        .grid-3 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .feature-box {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--vintage-red);
+            background: #FFFFFF;
+            padding: 2.5rem 2rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            border-top: 6px solid var(--accent-red);
+            box-shadow: 6px 6px 0px rgba(62, 39, 35, 0.08);
+            text-align: center;
         }
+        .feature-box h3 { font-size: 2rem; color: var(--primary-dark); margin-bottom: 1rem; }
+        .feature-box p { font-size: 1rem; }
 
         /* Carousel Section */
         .carousel-container {
@@ -145,115 +147,74 @@
             margin-top: 2rem;
         }
 
-        .carousel {
-            display: flex;
-            gap: 1.5rem;
-            scroll-snap-type: x mandatory;
-        }
-
+        .carousel { display: flex; gap: 1.5rem; scroll-snap-type: x mandatory; }
         .carousel img {
             scroll-snap-align: center;
-            width: 85vw;
-            max-width: 600px;
+            width: 90vw;
+            max-width: 800px;
             aspect-ratio: 3/2;
             object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            border: 2px solid var(--primary-dark);
             flex-shrink: 0;
-            /* Prevents image drag ghosting on mobile */
             -webkit-user-drag: none; 
         }
 
-        /* Custom Scrollbar for Carousel */
-        .carousel-container::-webkit-scrollbar { height: 10px; }
-        .carousel-container::-webkit-scrollbar-track { background: #E2E8F0; border-radius: 5px; }
-        .carousel-container::-webkit-scrollbar-thumb { background: var(--primary-blue); border-radius: 5px; }
+        .carousel-container::-webkit-scrollbar { height: 12px; }
+        .carousel-container::-webkit-scrollbar-track { background: var(--section-bg); border-radius: 6px; }
+        .carousel-container::-webkit-scrollbar-thumb { background: var(--primary-dark); border-radius: 6px; border: 2px solid var(--section-bg); }
 
         /* Payment Section */
-        .payment-grid {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap; 
-            margin-top: 2rem;
-        }
-
+        .payment-grid { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; }
         .payment-card {
-            background: white;
+            background: #FFFFFF;
             padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary-blue);
-            width: 220px;
-            /* Flex grow on mobile */
-            flex: 1 1 220px; 
-            max-width: 300px;
-        }
-
-        .payment-card h3 {
-            color: var(--text-dark);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .qr-code {
-            width: 100%;
-            height: auto;
-            margin: 1rem 0;
             border-radius: 4px;
-            border: 1px solid #E2E8F0;
+            border: 1px solid var(--border-color);
+            border-top: 5px solid var(--primary-dark);
+            box-shadow: 6px 6px 0px rgba(62, 39, 35, 0.08);
+            width: 220px;
+            text-align: center;
         }
+        .payment-card h3 { color: var(--primary-dark); font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .qr-code { width: 100%; height: auto; margin: 1rem 0; border-radius: 4px; border: 1px solid var(--border-color); }
 
         /* Footer */
         footer {
-            background-color: var(--text-dark);
-            color: white;
+            background-color: var(--primary-dark);
+            color: var(--bg-cream);
             text-align: center;
-            padding: 2rem 20px;
+            padding: 2.5rem 20px;
+            border-top: 4px solid var(--accent-red);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
         }
 
         /* Responsive Mobile Optimizations */
         @media (max-width: 768px) {
-            /* Layout Adjustments */
-            .grid-2 { grid-template-columns: 1fr; gap: 1.5rem; }
-            .container { padding: 40px 20px; }
+            .container { padding: 50px 20px; }
+            h2 { font-size: 2.5rem; }
+            .hero { padding: 50px 15px 70px; }
+            .hero-logo { height: 85px; margin-bottom: 20px; } /* Scales down smoothly for phones */
+            .hero h1 { font-size: 3.2rem; }
             
-            /* Typography Adjustments */
-            h2 { font-size: 2rem; }
-            .hero { padding: 60px 15px; }
-            .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 1.1rem; }
+            .logo { font-size: 1.6rem; }
             
-            /* Logo & Header Setup */
-            .logo { font-size: 1.2rem; }
-            .logo-img { height: 32px; margin-right: 10px; }
-            
-            /* Mobile Navigation Integration */
             .mobile-menu-toggle { display: block; }
             
             nav ul { 
-                display: none; /* Hidden by default */
+                display: none; 
                 flex-direction: column; 
                 position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary-blue);
-                padding: 1rem 0;
-                text-align: center;
-                gap: 0;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                top: 100%; left: 0; width: 100%;
+                background-color: var(--primary-dark);
+                padding: 1rem 0; text-align: center; gap: 0;
+                border-bottom: 3px solid var(--accent-red);
+                box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
             }
-            
-            /* Class toggled via JS */
             nav ul.active { display: flex; }
-            
-            nav a { 
-                display: block; 
-                padding: 15px 20px; /* Enhanced touch target size */
-                font-size: 1.1rem;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-            }
+            nav a { display: block; padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
             nav a:last-child { border-bottom: none; }
         }
     </style>
@@ -262,51 +223,50 @@
 
     <header>
         <div class="logo">
-            <img src="logo.png" alt="Lanes Logo" class="logo-img">
             <span>No. Chelmsford Lanes</span>
         </div>
         <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">☰</button>
         <nav>
             <ul>
-                <li><a href="#about">The Game</a></li>
+                <li><a href="#play">Play</a></li>
                 <li><a href="#history">Our Story</a></li>
-                <li><a href="#visit">Visit Us</a></li>
+                <li><a href="#visit">Visit</a></li>
                 <li><a href="#pay">Quick Pay</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>Real Bowling. Real History.</h1>
-        <p>Step back in time at No. Chelmsford Lanes, a classic neighborhood duckpin bowling alley.</p>
-        <a href="#visit" class="btn">Plan Your Visit</a>
+        <img src="logo.png" alt="Lanes Logo" class="hero-logo">
+        <h1>Welcome to Chelmsford Lanes.</h1>
+        <p>Step through our doors whether you're a seasoned league bowler or bringing the kids for a weekend outing, there’s a lane waiting for you here.</p>
+        <a href="#visit" class="btn">Let's Roll</a>
     </section>
 
-    <section id="about" class="container">
-        <h2>What is Duckpin Bowling?</h2>
-        <div class="grid-2">
-            <div>
-                <h3 style="color: var(--text-dark); font-size: 1.5rem; margin-bottom: 0.5rem;">About Duckpin</h3>
-                <p>Duckpin bowling is a classic New England-based variant that uses smaller balls without finger holes and lighter, squatter pins. Because it's a bit tougher to get a strike, bowlers get three rolls per frame instead of two. It's a fun, challenging, and highly authentic traditional bowling experience where a perfect 300 game has never been officially rolled!</p>
+    <section id="play" class="container">
+        <h2>Bowling for Everyone</h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">Duckpin uses smaller balls and lighter pins, making it the perfect game for all ages. No special gear required. Just bring your friends and have the time of your life!</p>
+        
+        <div class="grid-3">
+            <div class="feature-box">
+                <h3>Lane Rentals</h3>
+                <p>Grab your friends and family for an authentic bowling experience. Walk-ins are always welcome, but giving us a call to reserve a lane guarantees your spot on the wood.</p>
+            </div>
+            <div class="feature-box" style="border-top-color: var(--primary-dark);">
+                <h3>Parties & Events</h3>
+                <p>Celebrate with us! From children's birthday parties to corporate team-building, our nostalgic lanes offer the perfect, welcoming backdrop for your next unforgettable gathering.</p>
             </div>
             <div class="feature-box">
-                <h3>Welcome to the Lanes</h3>
-                <p style="margin-top: 1rem;">Whether you are a dedicated league bowler, a local regular, or a family looking for an energetic experience, our lanes are ready for you.</p>
+                <h3>Pro Leagues</h3>
+                <p>Looking for friendly, local competition? Join one of our long-standing duckpin leagues. Bowlers of all skill levels meet weekly for great games and great company.</p>
             </div>
         </div>
     </section>
 
-    <section id="history" style="background-color: #E2E8F0;">
-        <div class="container">
-            <h2>Preserving a Local Legacy</h2>
-            <div class="grid-2">
-                <div class="feature-box" style="border-top-color: var(--primary-blue);">
-                    <p>Established as Charlie Dinnigan Lanes around 1943, our building has been a neighborhood staple for decades. We are proud of our deep roots in the community.</p>
-                </div>
-                <div>
-                    <p>We operate using original, ~60-year-old mechanical pinsetters. These machines require deep mechanical knowledge and custom repairs to keep running. When you bowl here, you aren't just playing a game—you are keeping a piece of history alive.</p>
-                </div>
-            </div>
+    <section id="history" style="background-color: var(--section-bg);">
+        <div class="container" style="text-align: center;">
+            <h2>A Neighborhood Staple Since 1943</h2>
+            <p style="max-width: 700px; margin: 0 auto; font-size: 1.1rem;">Originally Charlie Dinnigan Lanes, we’ve been North Chelmsford's home for authentic duckpin bowling for over 80 years. We still operate on the original mechanical pinsetters keeping it vintage to respect our roots. When you step through our doors, you aren't just a customer. You're part of our local family.</p>
         </div>
     </section>
 
@@ -324,43 +284,41 @@
     </section>
 
     <section id="visit" class="container" style="padding-top: 40px;">
-        <h2>Let's Roll</h2>
+        <h2>Come On Down</h2>
         <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Ready to take on the challenge? Grab your friends and come roll a few frames with us.</p>
-            
-            <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: left;">
-                <p><strong>Location:</strong> 22 Vinal Square, North Chelmsford, MA</p>
-                <p style="margin-top: 1rem;"><strong>Hours:</strong><br>
+            <div style="background: #FFFFFF; padding: 2.5rem; border-radius: 4px; border: 1px solid var(--border-color); box-shadow: 6px 6px 0px rgba(62, 39, 35, 0.08); text-align: left;">
+                <p><strong>Location:</strong><br>22 Vinal Square, North Chelmsford, MA</p>
+                <p style="margin-top: 1.5rem;"><strong>Hours:</strong><br>
                 Monday - Friday: Call for Availability<br>
                 Saturday - Sunday: 9:00 AM - 6:00 PM</p>
-                <p style="margin-top: 1rem;"><strong>Contact:</strong> <a href="tel:9782518108" style="color: var(--primary-blue); font-weight: bold; text-decoration: none;">978-251-8108</a></p>
+                <p style="margin-top: 1.5rem;"><strong>Give us a ring:</strong><br> <a href="tel:9782518108" style="color: var(--accent-red); font-weight: bold; text-decoration: none; font-size: 1.2rem;">(978) 251-8108</a></p>
             </div>
         </div>
     </section>
 
-    <section id="pay" class="container" style="text-align: center; background-color: #E2E8F0; max-width: 100%;">
+    <section id="pay" class="container" style="text-align: center; background-color: var(--section-bg); max-width: 100%;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <h2>Quick Pay</h2>
-            <p style="font-size: 1.2rem;">Skip the line! Scan a code below to pay for your lane and shoe rentals directly.</p>
+            <p style="font-size: 1.1rem;">Skip the line! Scan a code below to pay for your lane and shoes directly.</p>
 
             <div class="payment-grid">
                 <div class="payment-card">
                     <h3>Venmo</h3>
                     <img src="venmo-qr.png" alt="Venmo QR Code" class="qr-code" loading="lazy">
-                    <p><strong>@NoChelmsfordLanes</strong></p>
+                    <p><strong>Scan to Pay</strong></p>
                 </div>
 
-                <div class="payment-card">
+                <div class="payment-card" style="border-top-color: var(--accent-red);">
                     <h3>Cash App</h3>
                     <img src="venmo-qr.png" alt="Cash App QR Code" class="qr-code" loading="lazy">
-                    <p><strong>@NoChelmsfordLanes</strong></p>
+                    <p><strong>Scan to Pay</strong></p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 No. Chelmsford Lanes. All rights reserved.</p>
+        <p>&copy; 2026 No. Chelmsford Lanes. Keeping tradition rolling.</p>
     </footer>
 
     <script>
@@ -377,7 +335,6 @@
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
-                // Close mobile menu if open
                 if (navMenu.classList.contains('active')) {
                     navMenu.classList.remove('active');
                 }
@@ -386,7 +343,6 @@
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {
-                    // Calculate header height to offset the scroll
                     const headerHeight = document.querySelector('header').offsetHeight;
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
